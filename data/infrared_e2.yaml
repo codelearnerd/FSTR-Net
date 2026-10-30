@@ -1,0 +1,11 @@
+path: data/example
+train: train/images
+val: val/images
+test: test/images
+nc: 1
+names: ['UAV cluster']
+ft_coef: 8
+lamda: 8.0
+d0: 2.0
+val_epoch: 0
+val_count: 0

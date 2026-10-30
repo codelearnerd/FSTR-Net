@@ -1,0 +1,19 @@
+{
+  "feature_layers": [4, 17, 20, 23, 27, 30, 33, 36, 37, 38],
+  "layer_labels": {
+    "4": "Backbone shallow P3 (layer 4)",
+    "17": "Shared neck P3 (layer 17)",
+    "20": "Shared neck P4 (layer 20)",
+    "23": "Shared neck P5 (layer 23)",
+    "27": "Fourier P3 before bridge (layer 27)",
+    "30": "Fourier P4 before bridge (layer 30)",
+    "33": "Fourier P5 before bridge (layer 33)",
+    "36": "Fourier P3 after bridge (layer 36)",
+    "37": "Fourier P4 after bridge (layer 37)",
+    "38": "Fourier P5 after bridge (layer 38)"
+  },
+  "feature_scales": {},
+  "overview_columns": 5,
+  "save_individual_panels": true,
+  "jpeg_quality": 95
+}

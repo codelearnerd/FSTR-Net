@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+env/
+runs/
+data/example/
+*.log
+*.npy
+*.csv
+!weights/best.pt

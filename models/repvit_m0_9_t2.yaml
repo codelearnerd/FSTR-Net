@@ -1,0 +1,427 @@
+nc: 1
+ft_coef: 8
+lamda: 5.0
+d0: 2.0
+formation_macro_detect: true
+fourier_proposal: true
+yolo_base_layers: 24
+fourier_feature_layers:
+- 24
+- 34
+point_backbone_grad: true
+point_yolo_prior: false
+point_contour_prior: false
+point_candidate_union: false
+point_fourier_feature_bridge: true
+outward_point_fourier_bridge: true
+pcbi_point_to_fourier: true
+pcbi_pred_cover: false
+point_temporal_enabled: true
+point_temporal_seq_len: 5
+point_temporal_channels: 16
+point_temporal_gain: 0.15
+point_temporal_align: true
+point_temporal_max_offset: 2.0
+point_temporal_downsample: 2
+point_temporal_suppress_gain: 0.12
+point_temporal_contrast_gain: 0.35
+point_temporal_many_to_many: true
+point_temporal_mode: motion_gate
+point_motion_spatial_floor: 0.15
+point_motion_enhance_gain: 0.15
+point_motion_threshold: 2.0
+point_motion_temperature: 0.5
+point_motion_track_radius: 2
+point_motion_output_gate: true
+point_motion_output_floor: 0.55
+point_motion_output_gamma: 1.0
+point_out_scale: 1
+ft_temporal_enabled: true
+ft_temporal_seq_len: 5
+ft_temporal_channels: 16
+ft_temporal_gain: 0.1
+ft_temporal_align: true
+ft_temporal_max_offset: 2.0
+ft_temporal_downsample: 1
+ft_temporal_suppress_gain: 0.08
+ft_temporal_contrast_gain: 0.25
+detect_temporal_enabled: false
+ft_point_rescue_enabled: true
+ft_point_rescue_gain: 0.85
+ft_point_rescue_threshold: 0.1
+ft_point_rescue_cluster_kernel: 7
+ft_point_rescue_min_mass: 1.5
+ft_point_rescue_mass_temperature: 0.5
+ft_point_rescue_nms_kernel: 15
+ft_point_rescue_topk: 4
+ft_point_rescue_center_kernel: 9
+ft_point_rescue_center_assignment_kernel: 7
+ft_point_rescue_anchor: 0
+ft_candidate_hybrid_enabled: true
+ft_candidate_hybrid_fourier_weight: 0.75
+ft_candidate_hybrid_scale_temperature: 0.7
+ft_candidate_hybrid_match_radius: 0.05
+ft_candidate_hybrid_min_fourier: 0.01
+ft_candidate_hybrid_extent_gain: 1.6
+ft_candidate_hybrid_unmatched_threshold: 1.1
+ft_geometry_directions: 64
+ft_geometry_radial_samples: 24
+ft_geometry_support_threshold: 0.35
+ft_geometry_temperature: 0.18
+ft_geometry_outward_bias: 6.0
+ft_geometry_radius_scale: 1.35
+ft_geometry_presence_gain: 6.0
+ft_geometry_chunk_size: 16
+ft_geometry_candidate_threshold: 0.05
+ft_geometry_candidate_gate_threshold: 0.2
+ft_geometry_candidate_gate_temperature: 0.05
+ft_geometry_candidate_topk: 16
+ft_geometry_residual_gain: 1.0
+ft_geometry_debug_topk: 4
+ft_geometry_center_blend: 0.7
+ft_geometry_support_mass_kernel: 3
+ft_geometry_support_mass_threshold: 0.6
+ft_geometry_support_mass_temperature: 0.15
+ft_geometry_angular_smooth_kernel: 3
+ft_geometry_angular_spike_gain: 2.0
+ft_geometry_expansion_cap_ratio: 2.0
+ft_geometry_point_mode: discrete
+ft_geometry_peak_threshold: 0.6
+ft_geometry_peak_nms_kernel: 3
+ft_geometry_peak_topk: 100
+ft_geometry_candidate_roi_scale: 2.75
+ft_geometry_candidate_roi_min_pixels: 40.0
+ft_geometry_candidate_roi_max_pixels: 96.0
+ft_geometry_peak_padding_pixels: 3.5
+ft_geometry_discrete_center_blend: 0.7
+ft_geometry_peak_min_count: 2
+ft_geometry_peak_outlier_mad_gain: 3.5
+ft_geometry_oracle: false
+ft_geometry_oracle_point_sigma: 0.75
+ft_geometry_oracle_candidate_logit: 12.0
+ft_point_spectral_enabled: false
+depth_multiple: 0.33
+width_multiple: 0.5
+anchors:
+- - 10
+  - 13
+  - 16
+  - 30
+  - 33
+  - 23
+- - 30
+  - 61
+  - 62
+  - 45
+  - 59
+  - 119
+- - 116
+  - 90
+  - 156
+  - 198
+  - 373
+  - 326
+backbone:
+- - -1
+  - 1
+  - BackboneStage
+  - - 0
+- - -1
+  - 1
+  - Conv
+  - - 64
+    - 1
+    - 1
+- - 0
+  - 1
+  - BackboneStage
+  - - 1
+- - -1
+  - 1
+  - Conv
+  - - 128
+    - 1
+    - 1
+- - 2
+  - 1
+  - BackboneStage
+  - - 2
+- - -1
+  - 1
+  - Conv
+  - - 256
+    - 1
+    - 1
+- - 4
+  - 1
+  - BackboneStage
+  - - 3
+- - -1
+  - 1
+  - Conv
+  - - 512
+    - 1
+    - 1
+- - 6
+  - 1
+  - BackboneStage
+  - - 4
+- - -1
+  - 1
+  - Conv
+  - - 1024
+    - 1
+    - 1
+head:
+- - -1
+  - 1
+  - Conv
+  - - 512
+    - 1
+    - 1
+- - -1
+  - 1
+  - nn.Upsample
+  - - None
+    - 2
+    - nearest
+- - - -1
+    - 7
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 512
+    - false
+- - -1
+  - 1
+  - Conv
+  - - 256
+    - 1
+    - 1
+- - -1
+  - 1
+  - nn.Upsample
+  - - None
+    - 2
+    - nearest
+- - - -1
+    - 5
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 256
+    - false
+- - -1
+  - 1
+  - Conv
+  - - 256
+    - 3
+    - 2
+- - - -1
+    - 14
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 512
+    - false
+- - -1
+  - 1
+  - Conv
+  - - 512
+    - 3
+    - 2
+- - - -1
+    - 10
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 1024
+    - false
+- - 13
+  - 1
+  - Conv
+  - - 256
+    - 1
+    - 1
+- - -1
+  - 1
+  - nn.Upsample
+  - - None
+    - 2
+    - nearest
+- - - -1
+    - 5
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 256
+    - false
+- - -1
+  - 1
+  - Conv
+  - - 256
+    - 3
+    - 2
+- - - -1
+    - 14
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 512
+    - false
+- - -1
+  - 1
+  - Conv
+  - - 512
+    - 3
+    - 2
+- - - -1
+    - 10
+  - 1
+  - Concat
+  - - 1
+- - -1
+  - 3
+  - C3
+  - - 1024
+    - false
+- - - 27
+    - 30
+    - 33
+  - 1
+  - FourierProposal
+  - - nc
+    - anchors
+- - - 1
+    - 3
+    - 5
+  - 1
+  - BioCountInfer
+  - - 1
+    - false
+- - 27
+  - 1
+  - CandidateDirectionalFourierBridge
+  - - 0.25
+    - true
+    - 1.5
+    - 0.35
+    - 0.04
+    - -1.0
+    - 32
+    - 3
+    - 7
+    - 15
+    - ft_point_rescue_enabled
+    - ft_point_rescue_gain
+    - ft_point_rescue_threshold
+    - ft_point_rescue_cluster_kernel
+    - ft_point_rescue_min_mass
+    - ft_point_rescue_mass_temperature
+    - ft_point_rescue_nms_kernel
+    - ft_point_rescue_topk
+    - ft_point_rescue_center_kernel
+    - ft_point_rescue_center_assignment_kernel
+    - ft_point_rescue_anchor
+    - ft_candidate_hybrid_enabled
+    - true
+    - ft_candidate_hybrid_fourier_weight
+    - ft_candidate_hybrid_scale_temperature
+    - ft_candidate_hybrid_match_radius
+    - ft_candidate_hybrid_min_fourier
+    - ft_candidate_hybrid_extent_gain
+    - ft_candidate_hybrid_unmatched_threshold
+- - 30
+  - 1
+  - CandidateDirectionalFourierBridge
+  - - 0.15
+    - true
+    - 1.5
+    - 0.35
+    - 0.04
+    - -1.0
+    - 32
+    - 3
+    - 5
+    - 9
+    - false
+    - ft_point_rescue_gain
+    - ft_point_rescue_threshold
+    - ft_point_rescue_cluster_kernel
+    - ft_point_rescue_min_mass
+    - ft_point_rescue_mass_temperature
+    - ft_point_rescue_nms_kernel
+    - ft_point_rescue_topk
+    - ft_point_rescue_center_kernel
+    - ft_point_rescue_center_assignment_kernel
+    - ft_point_rescue_anchor
+    - ft_candidate_hybrid_enabled
+    - false
+    - ft_candidate_hybrid_fourier_weight
+    - ft_candidate_hybrid_scale_temperature
+    - ft_candidate_hybrid_match_radius
+    - ft_candidate_hybrid_min_fourier
+    - ft_candidate_hybrid_extent_gain
+    - ft_candidate_hybrid_unmatched_threshold
+- - 33
+  - 1
+  - CandidateDirectionalFourierBridge
+  - - 0.05
+    - true
+    - 1.5
+    - 0.35
+    - 0.04
+    - -1.0
+    - 32
+    - 3
+    - 3
+    - 5
+    - false
+    - ft_point_rescue_gain
+    - ft_point_rescue_threshold
+    - ft_point_rescue_cluster_kernel
+    - ft_point_rescue_min_mass
+    - ft_point_rescue_mass_temperature
+    - ft_point_rescue_nms_kernel
+    - ft_point_rescue_topk
+    - ft_point_rescue_center_kernel
+    - ft_point_rescue_center_assignment_kernel
+    - ft_point_rescue_anchor
+    - ft_candidate_hybrid_enabled
+    - false
+    - ft_candidate_hybrid_fourier_weight
+    - ft_candidate_hybrid_scale_temperature
+    - ft_candidate_hybrid_match_radius
+    - ft_candidate_hybrid_min_fourier
+    - ft_candidate_hybrid_extent_gain
+    - ft_candidate_hybrid_unmatched_threshold
+- - - 36
+    - 37
+    - 38
+  - 1
+  - FTInfer
+  - - ft_coef
+    - lamda
+    - d0
+    - anchors
+    - true
+backbone_name: repvit_m0_9
+backbone_pretrained: true
