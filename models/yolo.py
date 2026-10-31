@@ -434,9 +434,9 @@ class Model(nn.Module):
 
 
     def set_seq_len(self, seq_len):
-        """
-        ?Transformer ?
-        """
+
+
+
         LOGGER.info(f"Setting sequence length to {seq_len} for temporal modules...")
 
         for m in self.model:
@@ -1062,9 +1062,9 @@ def parse_model(d, ch):
 
 class ValueInfer(nn.Module):
     def __init__(self, nv, anchors=(), ch=(), stride=()):
-        '''
-        na: nchor?        nv: ?
-        '''
+
+
+
         super().__init__()
         self.nl = len(anchors)
         self.na = len(anchors[0]) // 2
@@ -1090,9 +1090,9 @@ class ValueInfer(nn.Module):
 
 class SubclassInfer(nn.Module):
     def __init__(self, ns=1, anchors=(), ch=()):
-        '''
-        na: nchor?        ns: ?
-        '''
+
+
+
         super().__init__()
         self.nl = len(anchors)
         self.na = len(anchors[0]) // 2
@@ -1183,8 +1183,8 @@ class FTInfer(nn.Module):
                  point_spectral_min_cap_roi_ratio=0.0,
                  point_spectral_debug_topk=4,
                  inplace=True, ec=0.3):
-        '''
-        na: nchor?        ft_coef: ?coef?        '''
+
+
         super().__init__()
         self.nl = len(anchors)
         self.na = len(anchors[0]) // 2
@@ -2806,9 +2806,9 @@ class FTInfer(nn.Module):
         return grid, anchor_grid
 
 class P2PInfer(nn.Module):
-    """
-    ?(P2P Counting Head)
-    ?(P3)?    """
+
+
+
     def __init__(self, c1, ch=(), stride=8):
 
 

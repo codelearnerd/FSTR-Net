@@ -1373,7 +1373,7 @@ def train(hyp,
     pts = d2_flag
 
 
-    LOGGER.info(f'\n?[Video Mode] Initializing VideoFourierDataset with seq_len={seq_len}...')
+    LOGGER.info(f'\n[Video Mode] Initializing VideoFourierDataset with seq_len={seq_len}...')
 
 
     dataset = VideoFourierDataset(
@@ -2049,7 +2049,7 @@ def train(hyp,
                 debug_dir = save_dir / 'vis_loader_check_raw'
                 if not os.path.exists(debug_dir): os.makedirs(debug_dir)
 
-                print(f"\n?[PROBE] Visualizing RAW Batch {i} to {debug_dir}...")
+                print(f"\n[PROBE] Visualizing RAW Batch {i} to {debug_dir}...")
 
 
                 vis_imgs = imgs.clone().detach().cpu().numpy()

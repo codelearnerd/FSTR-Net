@@ -59,7 +59,7 @@ from scipy.spatial import ConvexHull
 from scipy.interpolate import splprep, splev
 
 class MicroPointTracker:
-    """ ( IoU?"""
+
     def __init__(self, max_dist=40):
         self.tracks = {}
         self.next_id = 1
@@ -106,13 +106,13 @@ class MicroPointTracker:
         return out_ids
 
 def apply_distance_clustering_with_recalc_fourier(det, dist_thresh=80, conf_thresh=0.005, core_conf_thresh=0.10, padding=4):
-    """
-    ?+ ?
-    :param dist_thresh: (?0)?
-    :param conf_thresh: ?
-    :param core_conf_thresh:  ?0.01
-    :param padding: 4 ?
-    """
+
+
+
+
+
+
+
 
     det = det[det[:, 4] >= conf_thresh]
     if len(det) == 0:
@@ -237,13 +237,13 @@ def apply_distance_clustering_with_recalc_fourier(det, dist_thresh=80, conf_thre
     return torch.tensor(clustered_det, device=device, dtype=dtype)
 
 def apply_distance_clustering_with_fourier(det, dist_thresh=80, conf_thresh=0.45, ft_padding=1.2):
-    """
-    ?
-    :param det: ?[N, 6 + FT_dim]
-    :param dist_thresh: ?
-    :param conf_thresh:
-    :param ft_padding:  (1.2 ?20%)
-    """
+
+
+
+
+
+
+
 
     det = det[det[:, 4] >= conf_thresh]
     if len(det) == 0:
@@ -334,13 +334,13 @@ def apply_distance_clustering_with_fourier(det, dist_thresh=80, conf_thresh=0.45
     return torch.tensor(clustered_det, device=device, dtype=dtype)
 
 def apply_distance_clustering(det, dist_thresh=80, conf_thresh=0.45, padding=20):
-    """
 
-    :param det: ?[N, 6+FT_dim]
-    :param dist_thresh: ?
-    :param conf_thresh: ?
-    :param padding: (?
-    """
+
+
+
+
+
+
 
     det = det[det[:, 4] >= conf_thresh]
 
@@ -681,7 +681,7 @@ def run(weights=ROOT / 'weights/best.pt',
         for m in model.model.modules():
             if hasattr(m, 'seq_len'):
                 target_seq_len = m.seq_len
-                print(f"?[Auto-Detect] Temporal model detected! seq_len = {target_seq_len}")
+                print(f"[Auto-Detect] Temporal model detected! seq_len = {target_seq_len}")
                 break
     except: pass
 

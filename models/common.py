@@ -59,25 +59,25 @@ GLOBAL_ORACLE_FOURIER_BASE_DICT = {}
 
 
 def probe_grad(name):
-    """
-    ?    """
+
+
     def hook(grad):
         if grad is None:
             return
 
 
         if torch.isnan(grad).any():
-            print(f"?[NAN EXPLOSION] Layer: {name} | Grad has NaN!")
+            print(f"[NAN EXPLOSION] Layer: {name} | Grad has NaN!")
 
 
         elif torch.isinf(grad).any():
-            print(f"?[INF EXPLOSION] Layer: {name} | Grad has Inf!")
+            print(f"[INF EXPLOSION] Layer: {name} | Grad has Inf!")
 
 
         else:
             max_val = grad.abs().max().item()
             if max_val > 1000:
-                print(f"?[HIGH GRAD] Layer: {name} | Max Abs Grad: {max_val:.4f}")
+                print(f"[HIGH GRAD] Layer: {name} | Max Abs Grad: {max_val:.4f}")
 
 
     return hook
@@ -830,9 +830,9 @@ class AdvancedFrequencyBranch(nn.Module):
         return x + alpha * spatial_recovered
 
 class SpatialGatingBranch(nn.Module):
-    """
-    ?(Omni-Scale Spatial Branch)
-    ?    """
+
+
+
     def __init__(self, c1):
         super().__init__()
 
@@ -2501,9 +2501,9 @@ class ASSCAModule(nn.Module):
 
 
 class CoarseGuidanceHead(nn.Module):
-    """
-    ?(0~1)
-    """
+
+
+
     def __init__(self, c1):
         super().__init__()
         self.conv = nn.Sequential(
