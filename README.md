@@ -28,6 +28,12 @@ https://github.com/user-attachments/assets/cefc1e89-6275-45a9-ab70-ea5864e353b3
 - `hyps/`: training hyperparameters.
 - `data/infrared_e2.yaml`: an editable dataset path template.
 
+## Dataset
+
+Download [data_mix.zip](https://drive.google.com/file/d/1VwQMB_SzWLIUzNBbWHDssBtxvUwsZORo/view?usp=drive_link) from the [FSTR-Net dataset folder on Google Drive](https://drive.google.com/drive/folders/1svKWSU2gHHHCPFCSZJvMaRQdQ8LQbb3V). The archive contains 12,550 files (1,829,687,501 bytes; SHA-256: `1c79c34f7fb87554b903035faa5352a5e04ab8d4ac59dcb3c814ff2d9b612a39`). Extract it and set `path` in `data/infrared_e2.yaml` to the extracted `data_mix` directory.
+
+The validation split also includes all 80 frames of `test` and the first 50 frames of `test_new` from `Experiment_eva`, with their matching labels. The release archive omits one exact duplicate validation image and backup `.bak` files. The original dataset and sequence folders were not modified.
+
 ## Setup
 
 The release was checked with Python 3.9, PyTorch 2.1.2, and timm 1.0.30. Install the Python dependencies with:
