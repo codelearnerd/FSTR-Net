@@ -3,7 +3,7 @@
 Validate a trained YOLOv5 model accuracy on a custom dataset
 
 Usage:
-    $ python path/to/val.py --data coco128.yaml --weights yolov5s.pt --img 640
+    $ python path/to/val.py --data data/infrared_e2.yaml --weights weights/best.pt --img 640
 """
 
 import argparse

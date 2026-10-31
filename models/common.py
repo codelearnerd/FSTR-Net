@@ -509,7 +509,7 @@ class ConcatDetachSkip(nn.Module):
 
 class DetectMultiBackend(nn.Module):
 
-    def __init__(self, weights='yolov5s.pt', device=None, dnn=True):
+    def __init__(self, weights='weights/best.pt', device=None, dnn=True):
 
 
         super().__init__()
@@ -979,8 +979,6 @@ from torchvision.ops import DeformConv2d, deform_conv2d
 
 
 def clean_grad_hook(grad):
-    """
-    ?    ?NaN ?Inf?    ?    """
     if grad is None:
         return None
     if torch.isnan(grad).any() or torch.isinf(grad).any():
@@ -998,16 +996,6 @@ import os
 
 
 class PointFeatureGate(nn.Module):
-    """Lightweight point-to-contour residual fusion.
-
-    ``detach_prior`` is an ablation switch.  When it is false, macro losses are
-    allowed to improve the point head through this gate; when true, the module
-    keeps only the forward point-to-contour guidance path.
-
-    The positive sigmoid gain avoids the previous failure mode where a scalar
-    tanh gate stayed near zero (or became negative) for the whole experiment.
-    """
-
     def __init__(self, c1, max_gain=0.15, detach_prior=False, power=1.0,
                  gain_init=-2.0):
         super().__init__()

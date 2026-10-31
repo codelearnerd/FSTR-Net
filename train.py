@@ -2,7 +2,7 @@
 Train a YOLOv5 model on a custom dataset
 
 Usage:
-    $ python path/to/train.py --data coco128.yaml --weights yolov5s.pt --img 640
+    $ python path/to/train.py --data data/infrared_e2.yaml --cfg models/repvit_m0_9_t2.yaml --img 640
 """
 
 
@@ -2715,10 +2715,10 @@ def train(hyp,
 
 def parse_opt(known=False):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data', type=str, default=ROOT / 'data/dota.yaml', help='dataset.yaml path')
-    parser.add_argument('--cfg', type=str, default=ROOT / 'models/yolov5s.yaml', help='model.yaml path')
-    parser.add_argument('--weights', type=str, default=ROOT / 'weights/yolov5s.pt', help='initial weights path')
-    parser.add_argument('--hyp', type=str, default=ROOT / 'hyps/hyp.scratch-ft.yaml', help='hyperparameters path')
+    parser.add_argument('--data', type=str, default=ROOT / 'data/infrared_e2.yaml', help='dataset.yaml path')
+    parser.add_argument('--cfg', type=str, default=ROOT / 'models/repvit_m0_9_t2.yaml', help='model.yaml path')
+    parser.add_argument('--weights', type=str, default='', help='initial weights path')
+    parser.add_argument('--hyp', type=str, default=ROOT / 'hyps/hyp.repvit_m0_9_t2.yaml', help='hyperparameters path')
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
     parser.add_argument(

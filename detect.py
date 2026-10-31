@@ -3,7 +3,7 @@
 Run inference on images, videos, directories, streams, etc.
 
 Usage:
-    $ python path/to/detect.py --weights yolov5s.pt --source 0  # webcam
+    $ python path/to/detect.py --weights weights/best.pt --source 0  # webcam
                                                              img.jpg  # image
                                                              vid.mp4  # video
                                                              path/  # directory
@@ -617,7 +617,7 @@ def detect(model, training, im,augment,conf_thres, iou_thres, ab_thres, fold_ang
         return pred
 
 @torch.no_grad()
-def run(weights=ROOT / 'yolov5s.pt',
+def run(weights=ROOT / 'weights/best.pt',
         source=ROOT / 'data/images',
         imgsz=[640,640],
         conf_thres=0.1,

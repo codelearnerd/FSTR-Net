@@ -1,4 +1,4 @@
-"""timm RepViT-M0.9 stages for the isolated T2 experiment."""
+"""RepViT backbone stages."""
 
 import torch
 from torch import nn
@@ -31,7 +31,7 @@ def build_backbone_stages(pretrained=True):
     try:
         import timm
     except ImportError as exc:
-        raise ImportError('This experiment requires timm>=1.0.30 for RepViT-M0.9.') from exc
+        raise ImportError('RepViT requires timm>=1.0.30.') from exc
     encoder = timm.create_model('repvit_m0_9', pretrained=pretrained)
 
 

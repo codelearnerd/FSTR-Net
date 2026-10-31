@@ -3,7 +3,7 @@
 YOLO-specific modules
 
 Usage:
-    $ python path/to/models/yolo.py --cfg yolov5s.yaml
+    $ python path/to/models/yolo.py --cfg models/repvit_m0_9_t2.yaml
 """
 
 import argparse
@@ -339,7 +339,7 @@ class Detect2(Detect):
 
 
 class Model(nn.Module):
-    def __init__(self, cfg='yolov5s.yaml', ch=3, nc=None, anchors=None, ft_coef=None):
+    def __init__(self, cfg='models/repvit_m0_9_t2.yaml', ch=3, nc=None, anchors=None, ft_coef=None):
         super().__init__()
         if isinstance(cfg, dict):
             self.yaml = cfg
@@ -4110,7 +4110,7 @@ class BioCountInfer(nn.Module):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--cfg', type=str, default='yolov5s.yaml', help='model.yaml')
+    parser.add_argument('--cfg', type=str, default='models/repvit_m0_9_t2.yaml', help='model.yaml')
     parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--profile', action='store_true', help='profile model speed')
     parser.add_argument('--test', action='store_true', help='test all yolo*.yaml')
