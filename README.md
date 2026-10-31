@@ -2,6 +2,22 @@
 
 This repository contains the paper's Fourier cluster contour detection network and one trained checkpoint. The default network combines point, temporal, and Fourier contour components.
 
+## Demo videos
+
+The three sequences show point detections and predicted Fourier contours over 100 frames at 3 fps. Green boxes mark matched detections, red boxes mark missed targets, and yellow boxes mark false positives. Cyan curves are predicted contours.
+
+### Cloud 5
+
+https://github.com/user-attachments/assets/653435b2-f18c-4643-9949-49ffb923a12a
+
+### Ground 3
+
+https://github.com/user-attachments/assets/e10ad813-745c-48a5-b28d-4185e3f50fae
+
+### Ground 6
+
+https://github.com/user-attachments/assets/cefc1e89-6275-45a9-ab70-ea5864e353b3
+
 ## Contents
 
 - `models/`: the released network configuration.
